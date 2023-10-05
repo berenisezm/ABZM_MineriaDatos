@@ -7,7 +7,7 @@ df = pd.read_csv("Practica2/datos_limpios.csv")
 # Cantidad de goles anotados por cada equipo en una competición
 goles_por_competicion = df.groupby("Competicion")[["Goles local", "Goles visitante"]].sum()
 
-# Crear el gráfico de barras
+# Crear gráfica de barras
 goles_por_competicion.plot(kind="bar", stacked=True)
 plt.title("Total de Goles por Competición")
 plt.xlabel("Competición")
@@ -24,15 +24,15 @@ df["Resultado"] = df.apply(lambda row: "Empate" if row["Goles local"] == row["Go
 # Contar los resultados en todos los partidos
 resultados_globales = df["Resultado"].value_counts()
 
-# Crear el gráfico de pastel
+# Crear gráfica de pastel
 plt.figure(figsize=(8, 6))
 plt.pie(resultados_globales, labels=resultados_globales.index, autopct='%1.1f%%', startangle=140)
 plt.title("Proporción de Resultados en Todas las Competiciones")
-plt.axis('equal')  # Hace que el gráfico de pastel sea circular
+plt.axis('equal')
 plt.savefig("Practica4/grafica_pastel.png")
 
 
-# Crear historama de los goles marcados por equipos locales
+# Crear histograma de los goles marcados por equipos locales
 plt.figure(figsize=(8, 6))
 plt.hist(df["Goles local"], bins=10, edgecolor='k')
 plt.title("Distribución de Goles Marcados por Equipos Locales")
@@ -41,7 +41,7 @@ plt.ylabel("Frecuencia")
 plt.savefig("Practica4/histograma_locales.png")
 
 
-# Crear historama de los goles marcados por equipos visitantes
+# Crear histograma de los goles marcados por equipos visitantes
 plt.figure(figsize=(8, 6))
 plt.hist(df["Goles visitante"], bins=10, edgecolor='k')
 plt.title("Distribución de Goles Marcados por Equipos Visitantes")
@@ -53,7 +53,7 @@ plt.savefig("Practica4/histograma_visitantes.png")
 # Sumar los goles locales y visitantes por jornada
 goles_por_jornada = df.groupby("Jornada")[["Goles local", "Goles visitante"]].sum()
 
-# Crear el gráfico de líneas
+# Crear gráfica de líneas
 plt.figure(figsize=(8, 6))
 goles_por_jornada.plot()
 plt.title("Evolución de Goles por Jornada")
